@@ -36,6 +36,21 @@ function App() {
       return prevTodos.filter(todo => todo.id !== id)
     })
   }
+
+  function deleteAllCompletedTodos() {
+    setTodos(prevTodos => {
+      return prevTodos.filter(todo => !todo.completed)
+    })
+  }
+  function deleteAllTodos() {
+    setTodos([])
+  }
+  function deleteAllPendingTodos() {
+    setTodos(prevTodos => {
+      return prevTodos.filter(todo => todo.completed)
+    })
+  }
+
   console.log('Todos:', todos)
   console.log(todos)
   return (
@@ -43,9 +58,9 @@ function App() {
       <h1 className='text-3xl font-bold text-center'>Todo App</h1>
       <p className='text-center text-gray-500'>A simple todo app built with React and TypeScript</p>
       <div className='max-w-lg mx-auto gap-4 mt-4'>
-        <AddTodoForm onSubmit={addTodo}/>
-        <TodoList todos={todos} onCompletedChange={setTodoCompleted} onDelete={deleteItem}/>
-        <TodoSummary todos={todos}/>
+        <AddTodoForm onSubmit={addTodo} />
+        <TodoList todos={todos} onCompletedChange={setTodoCompleted} onDelete={deleteItem} />
+        <TodoSummary todos={todos} deleteAllTodos={deleteAllTodos} />
       </div>
     </main>
   )

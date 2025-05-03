@@ -1,4 +1,4 @@
-export default function TodoSummary({ todos }: { todos: { completed: boolean }[] }) {
+export default function TodoSummary({ todos, deleteAllTodos }: { todos: { completed: boolean }[], deleteAllTodos: () => void }) {
     const totalTodos = todos.length;
     const completedTodos = todos.filter(todo => todo.completed).length;
     const pendingTodos = totalTodos - completedTodos;
@@ -10,7 +10,11 @@ export default function TodoSummary({ todos }: { todos: { completed: boolean }[]
                 <p>Total Todos: {totalTodos}</p>
                 <p>Completed Todos: {completedTodos}</p>
                 <p>Pending Todos: {pendingTodos}</p>
+                <button onClick={deleteAllTodos} className="text-red-500 hover:text-red-700 ml-0 mt-10">
+                    Delete All Todos
+                </button>
             </div>
+
         </div>
     );
 }
