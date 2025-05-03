@@ -16,6 +16,7 @@ export default function TodoList({ todos, onCompletedChange, onDelete }: TodoLis
     );
     // Map through the sorted todos and render TodoItem components
     return (
+       <>
         <div className='space-y-2 mt-4'>
             {
                 todosSorted.map(todo => (
@@ -25,6 +26,15 @@ export default function TodoList({ todos, onCompletedChange, onDelete }: TodoLis
                 ))
             }
         </div>
+        {
+            todos.length === 0 && (
+                <div className="text-center text-gray-500 mt-4">
+                    No todos available. Please add some.
+                </div>
+            )
+        }
+       
+       </>
 
     )
 }

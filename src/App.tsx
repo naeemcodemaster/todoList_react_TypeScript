@@ -3,6 +3,7 @@ import { dummyTodos } from './data/todos'
 import TodoItem from './components/TodoItem'
 import AddTodoForm from './components/addTodoForm'
 import TodoList from './components/TodoList'
+import TodoSummary from './components/TodoSummary'
 
 function App() {
   const [todos, setTodos] = React.useState(dummyTodos)
@@ -38,12 +39,13 @@ function App() {
   console.log('Todos:', todos)
   console.log(todos)
   return (
-    <main className='py-10 px-4 sm:px-6 lg:px-8 h-screen flex flex-col'>
+    <main className='py-10 px-4 sm:px-6 lg:px-8 h-screen flex flex-col overflow-y-auto'>
       <h1 className='text-3xl font-bold text-center'>Todo App</h1>
       <p className='text-center text-gray-500'>A simple todo app built with React and TypeScript</p>
       <div className='max-w-lg mx-auto gap-4 mt-4'>
         <AddTodoForm onSubmit={addTodo}/>
         <TodoList todos={todos} onCompletedChange={setTodoCompleted} onDelete={deleteItem}/>
+        <TodoSummary todos={todos}/>
       </div>
     </main>
   )
